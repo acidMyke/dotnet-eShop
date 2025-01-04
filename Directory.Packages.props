@@ -3,13 +3,25 @@
     <!-- Enable central package management, https://learn.microsoft.com/en-us/nuget/consume-packages/Central-Package-Management -->
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
-    <AspnetVersion>8.0.7</AspnetVersion>
+    <AspnetVersion>9.0.0</AspnetVersion>
     <OpenTelemetryVersion>1.9.0</OpenTelemetryVersion>
-    <EfVersion>8.0.11</EfVersion>
+    <EfVersion>9.0.0</EfVersion>
+    <ExtensionsVersion>9.0.0</ExtensionsVersion>
+    <ApiVersioningVersion>8.1.0</ApiVersioningVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="8.10.0" />
-    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="8.2.2" />
+    <!-- Extensions  -->
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="$(ExtensionsVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="$(ExtensionsVersion)" />
+    
+    <!-- Asp.Versioning -->
+    <PackageVersion Include="Asp.Versioning.Http" Version="$(ApiVersioningVersion)" />
+    <PackageVersion Include="Asp.Versioning.Http.Client" Version="$(ApiVersioningVersion)" />
+    <PackageVersion Include="Asp.Versioning.Mvc.ApiExplorer" Version="$(ApiVersioningVersion)" />
+
+    <!-- ASP NET Version -->
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(AspnetVersion)" />
+
     <!-- Entity Framework Version -->
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="$(EfVersion)" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="$(EfVersion)" >
@@ -31,5 +43,6 @@
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
     <PackageVersion Include="xunit" Version="2.9.2" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="3.0.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="7.2.0" />
   </ItemGroup>
 </Project>
