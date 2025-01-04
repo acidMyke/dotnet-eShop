@@ -7,7 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
-namespace eShop.ServiceDefaults;
+namespace eShop.ServiceDefaults.Extensions;
 
 public static class OpenApiExtensions
 {
