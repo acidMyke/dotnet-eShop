@@ -1,0 +1,47 @@
+name: eShop
+services:
+  identity.api:
+    build:
+      context: .
+      dockerfile: ./src/IdentityApi/dev.Dockerfile
+    environment:
+      ConnectionStrings__IdentityDb: Host=identity.db;Port=5432;Database=IdentityDb;Username=postgres;Password=veryWeak(!)Password
+    ports:
+      - 10366:5241
+    depends_on:
+      identity.db:
+        condition: service_healthy
+    develop:
+      watch:
+        - action: rebuild
+          path: ./src/IdentityApi/dev.Dockerfile
+        - action: rebuild
+          path: ./src/IdentityApi/Program.cs
+        - action: rebuild
+          path: ./src/IdentityApi/Migrations
+        - action: rebuild
+          path: ./src/IdentityApi/appsettings.Development.json
+        - action: rebuild
+          path: ./src/IdentityApi/appsettings.json
+        - action: rebuild
+          path: ./src/IdentityApi/IdentityApi.csproj
+        - action: rebuild
+          path: ./src/eShop.ServiceDefaults
+        - action: sync
+          path: ./src/IdentityApi
+          target: /app/src/IdentityApi
+  identity.db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    user: postgres
+    environment:
+      - POSTGRES_PASSWORD=veryWeak(!)Password
+      - POSTGRES_DB=IdentityDb
+    ports:
+      - 60839:5432
+    healthcheck:
+      test: ['CMD', 'pg_isready']
+      interval: 10s
+      timeout: 5s
+      retries: 5
