@@ -3,13 +3,17 @@
     <!-- Enable central package management, https://learn.microsoft.com/en-us/nuget/consume-packages/Central-Package-Management -->
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
-    <AspnetVersion>9.0.0</AspnetVersion>
+    <AspnetVersion>8.0.11</AspnetVersion>
     <OpenTelemetryVersion>1.9.0</OpenTelemetryVersion>
-    <EfVersion>9.0.0</EfVersion>
+    <EfVersion>8.0.11</EfVersion>
     <ExtensionsVersion>9.0.0</ExtensionsVersion>
     <ApiVersioningVersion>8.1.0</ApiVersioningVersion>
+    <AspireVersion>8.2.2</AspireVersion>
   </PropertyGroup>
   <ItemGroup>
+    <!-- Aspire -->
+    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="$(AspireVersion)" />
+
     <!-- Extensions  -->
     <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="$(ExtensionsVersion)" />
     <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="$(ExtensionsVersion)" />
@@ -21,6 +25,9 @@
 
     <!-- ASP NET Version -->
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(AspnetVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(AspnetVersion)" />
+    <PackageVersion Include="Microsoft.AspNetCore.Identity.UI" Version="$(AspnetVersion)" />
+
 
     <!-- Entity Framework Version -->
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="$(EfVersion)" />
